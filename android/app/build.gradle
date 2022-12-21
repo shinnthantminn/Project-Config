@@ -138,6 +138,9 @@ android {
     }
 
     defaultConfig {
+        configurations.all {
+            resolutionStrategy { force 'androidx.core:core:1.6.0' }
+        }
         applicationId "com.panntheefoundation"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -214,8 +217,10 @@ dependencies {
     implementation 'com.facebook.fresco:animated-gif:2.5.0'
 
     // androidTestImplementation('com.wix:detox:+')
-    
+
     compile project(':react-native-video')
+    compile project(':react-native-screenshot-prevent')
+    compile 'com.android.support:support-v4:26.1.0'
     implementation "androidx.appcompat:appcompat:1.0.0"
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
