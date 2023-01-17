@@ -38,7 +38,7 @@ import ReadMore from '@fawazahmed/react-native-read-more'
 
 import VideoPlayer from 'react-native-video-controls'
 // import Orientation from 'react-native-orientation'
-import RNPreventScreenshot from 'react-native-prevent-screenshot'
+// import RNPreventScreenshot from 'react-native-prevent-screenshot'
 import ModalAppVersionForceUpdate from '../components/modal-app-version-force-update.js'
 
 class NewsfeedScreen extends React.PureComponent {
@@ -663,7 +663,7 @@ class NewsfeedScreen extends React.PureComponent {
     }
 
     componentDidMount() {
-        RNPreventScreenshot.enabled(true)
+        // RNPreventScreenshot.enabled(true)
         this.navigationEventListener = Navigation.events().bindComponent(this);
         this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => this._onClickedBack())
         this.netInfoEventListener = NetInfo.addEventListener((netInfoState) => {
@@ -715,7 +715,7 @@ class NewsfeedScreen extends React.PureComponent {
     // }
 
     componentWillUnmount() {
-        RNPreventScreenshot.enabled(false)
+        // RNPreventScreenshot.enabled(false)
         if (this.navigationEventListener) {
             this.navigationEventListener.remove();
         }
@@ -728,7 +728,7 @@ class NewsfeedScreen extends React.PureComponent {
     }
 
     componentDidAppear() {
-        RNPreventScreenshot.enabled(true)
+        // RNPreventScreenshot.enabled(true)
         AsyncStorage.multiGet([
             CommonConstants.PERSISTENT_STORAGE_KEY.LOGGEDIN_USER
         ]).then((storedData) => {
@@ -758,7 +758,7 @@ class NewsfeedScreen extends React.PureComponent {
     }
 
     componentDidDisappear() {
-        RNPreventScreenshot.enabled(false)
+        // RNPreventScreenshot.enabled(false)
         if(this.backHandler) {
             this.backHandler.remove()
             this.backHandler = false
