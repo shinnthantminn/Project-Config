@@ -13,7 +13,9 @@ import {
   Linking,
   ImageBackground,
   ScrollView,
+  View,
   Alert,
+  LogBox,
 } from "react-native";
 
 import { Navigation } from "react-native-navigation";
@@ -436,7 +438,6 @@ class HomeScreen extends React.Component {
     const logo_image = require("../assets/images/panthee-logo-no-text.png");
     const background_image = require("../assets/images/pannthee-bg.jpg");
     const digital_learning_platform_image = require("../assets/images/digital-learning-platform.jpg");
-
     return (
       <NativeBaseProvider>
         <SafeAreaView
@@ -458,88 +459,76 @@ class HomeScreen extends React.Component {
           <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
 
           <ModalAppVersionForceUpdate />
-
-          <ImageBackground
-            source={background_image}
+          <Box
             style={{
-              flex: 1,
-              width: width,
-              height: loading == true ? height : "auto",
-            }}
-            imageStyle={{
-              opacity: Platform.OS == "android" ? 0.5 : 1,
+              paddingRight: COMMON_STYLE.PADDING,
+              height: 60,
+              overflow: "hidden",
+              borderBottomWidth: 1,
+              borderBottomColor: COLORS.THEME,
             }}
           >
-            <Box
+            <Grid
               style={{
-                paddingRight: COMMON_STYLE.PADDING,
-                height: 60,
-                overflow: "hidden",
-                borderBottomWidth: 1,
-                borderBottomColor: COLORS.THEME,
+                alignItems: "flex-end",
+                width: width,
               }}
             >
-              <Grid
+              <Col
                 style={{
-                  alignItems: "flex-end",
-                  width: width,
+                  width: 60,
+                  height: 60,
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                <Col
+                <TouchableOpacity
+                  onPress={this._onClickedMenu}
                   style={{
-                    width: 60,
-                    height: 60,
                     alignItems: "center",
                     justifyContent: "center",
+                    marginRight: 10,
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faBars}
+                    size={30}
+                    style={{
+                      color: COLORS.THEME,
+                    }}
+                  />
+                </TouchableOpacity>
+              </Col>
+              <Col
+                style={{
+                  height: 60,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Box
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
                   }}
                 >
                   <TouchableOpacity
-                    onPress={this._onClickedMenu}
+                    onPress={this._onClickedHome}
                     style={{
                       alignItems: "center",
                       justifyContent: "center",
-                      marginRight: 10,
                     }}
                   >
-                    <FontAwesomeIcon
-                      icon={faBars}
-                      size={30}
+                    <Image
+                      source={logo_image}
                       style={{
-                        color: COLORS.THEME,
+                        width: 40,
+                        height: 45,
                       }}
                     />
                   </TouchableOpacity>
-                </Col>
-                <Col
-                  style={{
-                    height: 60,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Box
-                    style={{
-                      flex: 1,
-                      flexDirection: "row",
-                    }}
-                  >
-                    <TouchableOpacity
-                      onPress={this._onClickedHome}
-                      style={{
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Image
-                        source={logo_image}
-                        style={{
-                          width: 40,
-                          height: 45,
-                        }}
-                      />
-                    </TouchableOpacity>
 
-                    {/*<TouchableOpacity onPress={this._onClickedHome}>
+                  {/*<TouchableOpacity onPress={this._onClickedHome}>
                                             <Text style={[
                                                 COMMON_STYLES['en'].bold,
                                                 {
@@ -555,48 +544,49 @@ class HomeScreen extends React.Component {
                                             ]}>{ CommonConstants.app_name }</Text>
                                         </TouchableOpacity>
                                         */}
-                  </Box>
-                </Col>
-                <Col style={{ width: 45 }}></Col>
-              </Grid>
-            </Box>
+                </Box>
+              </Col>
+              <Col style={{ width: 45 }}></Col>
+            </Grid>
+          </Box>
 
-            <ScrollView>
-              <Box
-                style={{
-                  marginTop: 20,
-                  marginBottom: 20,
-                  paddingLeft: COMMON_STYLE.PADDING,
-                  paddingRight: COMMON_STYLE.PADDING,
-                }}
-              >
-                {isConnected != true && (
-                  <Text
-                    style={[
-                      COMMON_STYLES[i18n.language].regular,
-                      {
-                        color: COLORS.BLACK,
-                        textAlign: "center",
-                      },
-                    ]}
+          <ScrollView>
+            <Box
+              style={{
+                marginTop: 20,
+                marginBottom: 20,
+                paddingLeft: COMMON_STYLE.PADDING,
+                paddingRight: COMMON_STYLE.PADDING,
+              }}
+            >
+              {isConnected != true && (
+                <Text
+                  style={[
+                    COMMON_STYLES[i18n.language].regular,
+                    {
+                      color: COLORS.BLACK,
+                      textAlign: "center",
+                    },
+                  ]}
+                >
+                  {t("No Internet Connection")}
+                </Text>
+              )}
+
+              {isConnected && loading == true && (
+                <Spinner color={COLORS.THEME} />
+              )}
+
+              {isConnected && loading == false && this.groups.length > 0 && (
+                <Fragment>
+                  <Box
+                    style={{
+                      height: width > 360 ? 280 : 250,
+                      borderRadius: 12,
+                    }}
                   >
-                    {t("No Internet Connection")}
-                  </Text>
-                )}
-
-                {isConnected && loading == true && (
-                  <Spinner color={COLORS.THEME} />
-                )}
-
-                {isConnected && loading == false && this.groups.length > 0 && (
-                  <Fragment>
-                    <Box
-                      style={{
-                        height: width > 360 ? 280 : 250,
-                        borderRadius: 12,
-                      }}
-                    >
-                      {this.banners.length > 0 && (
+                    {this.banners.length > 0 && (
+                      <View>
                         <Carousel
                           ref={(carousel) => {
                             this.banner_carousel = carousel;
@@ -619,20 +609,22 @@ class HomeScreen extends React.Component {
                           inactiveSlideScale={1}
                           inactiveSlideOpacity={1}
                         />
-                      )}
+                      </View>
+                    )}
 
-                      {this.banners.length == 0 && (
-                        <Image
-                          source={digital_learning_platform_image}
-                          style={{
-                            width: null,
-                            height: width > 360 ? 280 : 250,
-                            borderRadius: 0,
-                          }}
-                          resizeMode={"contain"}
-                        />
-                      )}
-                    </Box>
+                    {this.banners.length == 0 && (
+                      <Image
+                        source={digital_learning_platform_image}
+                        style={{
+                          width: null,
+                          height: width > 360 ? 280 : 250,
+                          borderRadius: 0,
+                        }}
+                        resizeMode={"contain"}
+                      />
+                    )}
+                  </Box>
+                  <View>
                     <Box>
                       <Text
                         style={[
@@ -678,23 +670,26 @@ class HomeScreen extends React.Component {
                         {t("Choose your Grade to start Study")}
                       </Text>
                     </Box>
-                    <FlatList
-                      keyExtractor={(item, index) =>
-                        "groups_" + index.toString()
-                      }
-                      data={this.groups}
-                      renderItem={this.renderGroup}
-                      numColumns={2}
-                      extraData={this.state}
-                      scrollEnabled={false}
-                      showsVerticalScrollIndicator={false}
-                      initialNumToRender={10}
-                    />
-                  </Fragment>
-                )}
-              </Box>
-            </ScrollView>
-          </ImageBackground>
+                  </View>
+                  <FlatList
+                    keyExtractor={(item, index) => "groups_" + index.toString()}
+                    data={this.groups}
+                    renderItem={this.renderGroup}
+                    numColumns={2}
+                    extraData={this.state}
+                    scrollEnabled={false}
+                    showsVerticalScrollIndicator={false}
+                    initialNumToRender={10}
+                  />
+                  {/* {this.groups.map((element, index) => {
+                      const data = { element, index };
+                      console.log();
+                      // return this.renderGroup(data);
+                    })} */}
+                </Fragment>
+              )}
+            </Box>
+          </ScrollView>
         </SafeAreaView>
       </NativeBaseProvider>
     );

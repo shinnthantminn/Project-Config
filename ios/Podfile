@@ -11,7 +11,7 @@ target 'panntheefoundation' do
   # pod 'Firebase/Analytics'
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
-  pod 'RNPreventScreenshot', :path => '../node_modules/react-native-prevent-screenshot/ios'
+  # pod 'RNPreventScreenshot', :path => '../node_modules/react-native-prevent-screenshot/ios'
 
 
   pod 'RNExitApp', :path => '../node_modules/react-native-exit-app'

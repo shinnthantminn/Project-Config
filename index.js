@@ -228,7 +228,7 @@ Navigation.events().registerAppLaunchedListener(() => {
         Platform.OS == "ios" ? ["portrait", "landscape"] : ["portrait"],
     },
     bottomTabs: {
-      backgroundColor: COLORS.THEME,
+      backgroundColor: COLORS.WHITE,
       currentTabIndex: 0,
       animate: false,
       drawBehind: false,
@@ -237,8 +237,8 @@ Navigation.events().registerAppLaunchedListener(() => {
     bottomTab: {
       animate: false,
       textColor: COLORS.BLACK,
-      selectedIconColor: COLORS.WHITE,
-      selectedTextColor: COLORS.WHITE,
+      selectedIconColor: COLORS.THEME,
+      selectedTextColor: COLORS.THEME,
       selectedFontSize: 12,
       fontSize: 12,
       drawBehind: false,

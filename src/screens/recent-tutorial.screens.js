@@ -595,121 +595,109 @@ class RecentTutorialScreen extends React.PureComponent {
           <StatusBar barStyle="dark-content" backgroundColor={COLORS.WHITE} />
           <ModalAppVersionForceUpdate />
 
-          <ImageBackground
-            source={background_image}
+          <Box
             style={{
-              flex: 1,
-              width: width,
-              height: height,
-            }}
-            imageStyle={{
-              opacity: Platform.OS == "android" ? 0.5 : 1,
+              paddingRight: COMMON_STYLE.PADDING,
+              height: 60,
+              overflow: "hidden",
+              borderBottomWidth: 1,
+              borderBottomColor: COLORS.THEME,
             }}
           >
-            <Box
+            <Grid
               style={{
-                paddingRight: COMMON_STYLE.PADDING,
-                height: 60,
-                overflow: "hidden",
-                borderBottomWidth: 1,
-                borderBottomColor: COLORS.THEME,
+                alignItems: "flex-end",
+                width: width,
               }}
             >
-              <Grid
+              <Col
                 style={{
-                  alignItems: "flex-end",
-                  width: width,
+                  height: 60,
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                <Col
-                  style={{
-                    height: 60,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Box
-                    style={{
-                      flex: 1,
-                      flexDirection: "row",
-                    }}
-                  >
-                    <TouchableOpacity
-                      onPress={this._onClickedHome}
-                      style={{
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Image
-                        source={logo_image}
-                        style={{
-                          width: 40,
-                          height: 45,
-                        }}
-                      />
-                    </TouchableOpacity>
-                  </Box>
-                </Col>
-              </Grid>
-            </Box>
-
-            {isConnected &&
-              loading == false &&
-              this.recent_tutorials.length == 0 && (
                 <Box
                   style={{
-                    marginTop: 30,
-                    paddingRight: COMMON_STYLE.PADDING,
-                    paddingLeft: COMMON_STYLE.PADDING,
+                    flex: 1,
+                    flexDirection: "row",
                   }}
                 >
-                  <Text
-                    style={[
-                      COMMON_STYLES[i18n.language].regular,
-                      {
-                        color: COLORS.THEME,
-                      },
-                    ]}
-                  >
-                    {t("No recent record")}
-                  </Text>
-                </Box>
-              )}
-
-            <FlatList
-              keyExtractor={(item, index) => "tutorials_" + index.toString()}
-              data={this.recent_tutorials}
-              renderItem={this.renderTutorial}
-              numColumns={1}
-              extraData={self.state}
-              scrollEnabled={true}
-              showsVerticalScrollIndicator={false}
-              initialNumToRender={10}
-              onEndReached={this._onLoadMore}
-              onEndReachedThreshold={0.5}
-              refreshControl={
-                <RefreshControl
-                  progressViewOffset={-height}
-                  refreshing={this.state.refreshing}
-                  onRefresh={this._onLoadRefresh}
-                />
-              }
-              ListFooterComponent={
-                this.state.loading_more && (
-                  <AnimatableBox
-                    transition="fadeInDown"
+                  <TouchableOpacity
+                    onPress={this._onClickedHome}
                     style={{
-                      paddingTop: 10,
-                      paddingBottom: 10,
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                   >
-                    <ActivityIndicator size={35} color={COLORS.WHITE} />
-                  </AnimatableBox>
-                )
-              }
-            />
-          </ImageBackground>
+                    <Image
+                      source={logo_image}
+                      style={{
+                        width: 40,
+                        height: 45,
+                      }}
+                    />
+                  </TouchableOpacity>
+                </Box>
+              </Col>
+            </Grid>
+          </Box>
+
+          {isConnected &&
+            loading == false &&
+            this.recent_tutorials.length == 0 && (
+              <Box
+                style={{
+                  marginTop: 30,
+                  paddingRight: COMMON_STYLE.PADDING,
+                  paddingLeft: COMMON_STYLE.PADDING,
+                }}
+              >
+                <Text
+                  style={[
+                    COMMON_STYLES[i18n.language].regular,
+                    {
+                      color: COLORS.THEME,
+                    },
+                  ]}
+                >
+                  {t("No recent record")}
+                </Text>
+              </Box>
+            )}
+
+          <FlatList
+            keyExtractor={(item, index) => "tutorials_" + index.toString()}
+            data={this.recent_tutorials}
+            renderItem={this.renderTutorial}
+            numColumns={1}
+            extraData={self.state}
+            scrollEnabled={true}
+            showsVerticalScrollIndicator={false}
+            initialNumToRender={10}
+            onEndReached={this._onLoadMore}
+            onEndReachedThreshold={0.5}
+            refreshControl={
+              <RefreshControl
+                progressViewOffset={-height}
+                refreshing={this.state.refreshing}
+                onRefresh={this._onLoadRefresh}
+              />
+            }
+            ListFooterComponent={
+              this.state.loading_more && (
+                <AnimatableBox
+                  transition="fadeInDown"
+                  style={{
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                  }}
+                >
+                  <ActivityIndicator size={35} color={COLORS.WHITE} />
+                </AnimatableBox>
+              )
+            }
+          />
         </SafeAreaView>
       </NativeBaseProvider>
     );

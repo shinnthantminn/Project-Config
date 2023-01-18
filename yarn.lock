@@ -7732,11 +7732,6 @@ react-native-pixel-perfect@^1.0.1:
   resolved "https://registry.yarnpkg.com/react-native-pixel-perfect/-/react-native-pixel-perfect-1.0.2.tgz#8e6dc97e377caa4bd07f9e584ba438d53c0e25e8"
   integrity sha512-0IvYCNkxuQbQC9q4tI+C3i6o38nbx916p7gBRBWuPxDhKBCuTkVV3VukcfW6vtjRlwQm6kwQcF9OtI+yUBt+YA==
 
-react-native-prevent-screenshot@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-prevent-screenshot/-/react-native-prevent-screenshot-1.0.2.tgz#0eedacbd349edfd5589212a148111b1dde68765a"
-  integrity sha512-KZ6E0QQZhJzf1Y4YGw1VV8BYULn5G3a+6eN9l4UnoiUO45KQUchSw+gO+LPcLaKgyZ0TXJbqaM7gM5zTyPocog==
-
 react-native-safe-area-context@^3.2.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.4.1.tgz#c967a52903d55fe010b2428e5368b42f1debc0a7"
