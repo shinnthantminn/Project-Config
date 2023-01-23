@@ -35,6 +35,9 @@ import NewsfeedDetailScreen from "./newsfeed-detail.screens";
 import ChattingScreen from "./chatting.screens";
 import InnerChattingScreen from "./inner-chatting.screens";
 import ChattingDetailsScreen from "./chatting-details.screens";
+import PasswordScreen from "./password.screen";
+import CreatePassword from "./create-password.screens";
+import UserinfoScreen from "./userinfo.screen";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -112,6 +115,28 @@ Navigation.registerComponent(
 );
 
 Navigation.registerComponent(
+  "navigation.panntheefoundation.passwordScreen",
+  () => (props) =>
+    (
+      <Provider store={store}>
+        <PasswordScreen {...props} />
+      </Provider>
+    ),
+  () => PasswordScreen
+);
+
+Navigation.registerComponent(
+  "navigation.panntheefoundation.createPassword",
+  () => (props) =>
+    (
+      <Provider store={store}>
+        <CreatePassword {...props} />
+      </Provider>
+    ),
+  () => CreatePassword
+);
+
+Navigation.registerComponent(
   "navigation.panntheefoundation.RegisterScreen",
   () => (props) =>
     (
@@ -120,6 +145,17 @@ Navigation.registerComponent(
       </Provider>
     ),
   () => RegisterScreen
+);
+
+Navigation.registerComponent(
+  "navigation.panntheefoundation.UserInfoScreen",
+  () => (props) =>
+    (
+      <Provider store={store}>
+        <UserinfoScreen {...props} />
+      </Provider>
+    ),
+  () => UserinfoScreen
 );
 
 Navigation.registerComponent(
