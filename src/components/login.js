@@ -22,6 +22,8 @@ import {
   Checkbox,
   Center,
   Square,
+  Spacer,
+  Flex,
 } from "native-base";
 
 import { withTranslation } from "react-i18next";
@@ -68,7 +70,7 @@ import {
   faPhone,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import Gmail from "../assets/images/gmail.png";
+// import Gmail from "../assets/images/gmail.png";
 import { faFacebook, faApple } from "@fortawesome/free-brands-svg-icons";
 
 import SidebarEn from "../modules/sidebar/en";
@@ -86,6 +88,8 @@ const AnimatedCheckbox = Animated.createAnimatedComponent(Checkbox);
 class Login extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    console.log(this.props);
 
     this.state = {
       login_changed: false,
@@ -211,13 +215,16 @@ class Login extends React.PureComponent {
                   marginTop: 30,
                 }}
               />
+              <Text letterSpacing={3} fontSize={10}>
+                Education
+              </Text>
             </Box>
 
             <FormControl
               isRequired
               style={{
                 height: 80,
-                marginBottom: 20,
+                marginBottom: 7,
               }}
             >
               <Stack>
@@ -273,101 +280,12 @@ class Login extends React.PureComponent {
               </Stack>
             </FormControl>
 
-            {/* <FormControl
-              isRequired
-              style={{
-                marginBottom: 20,
-                height: 60,
-              }}
-            >
-              <HStack mx={2}>
-                <AnimatedCheckbox
-                  accessibilityLabel={t("I agree to the terms & conditions")}
-                  isChecked={this.form.tnc}
-                  colorScheme="theme"
-                  style={{
-                    marginLeft: 0,
-                    paddingLeft: 0,
-                    marginTop: Platform.OS == "ios" ? 5 : 2,
-                  }}
-                  onPress={this._onClickedTncCheckbox}
-                ></AnimatedCheckbox>
-                <Box
-                  style={{
-                    flex: 1,
-                    height: i18n.language == "en" ? 40 : 60,
-                    flexWrap: "wrap",
-                    flexDirection: "row",
-                  }}
-                >
-                  <TouchableWithoutFeedback
-                    onPress={this._onClickedTncCheckbox}
-                  >
-                    <Text
-                      style={[
-                        COMMON_STYLES[i18n.language].regular,
-                        {
-                          color: COLORS.BLACK,
-                          fontSize: 14,
-                          marginLeft: 20,
-                          opacity:
-                            this.form.tnc == -1 || this.form.tnc == true
-                              ? 1
-                              : 0.5,
-                        },
-                      ]}
-                    >
-                      {t("I agree to the terms & conditions")}
-
-                      <TouchableOpacity
-                        onPress={this._onClickedTncReadmore}
-                        style={{
-                          width: 100,
-                        }}
-                      >
-                        <Text
-                          style={[
-                            COMMON_STYLES[i18n.language].regular,
-                            {
-                              color: COLORS.BLACK,
-                              height: 25,
-                              fontSize: 14,
-                              opacity:
-                                this.form.tnc == -1 || this.form.tnc == true
-                                  ? 1
-                                  : 0.5,
-                              marginLeft: 5,
-                              marginTop: Platform.OS == "ios" ? -30 : 0,
-                              marginBottom: Platform.OS == "ios" ? 0 : -8,
-                              textDecorationLine: "underline",
-                            },
-                          ]}
-                        >
-                          {t("read more")}
-                        </Text>
-                      </TouchableOpacity>
-                    </Text>
-                  </TouchableWithoutFeedback>
-                </Box>
-              </HStack>
-            </FormControl> */}
-
             <Box alignItems={"center"} rounded={"full"} justifyContent="center">
               <Button
                 block
                 onPress={this._onLogin}
                 style={COMMON_STYLES.LOGIN_BUTTON}
               >
-                {/* <Text
-                style={[
-                  COMMON_STYLES[i18n.language].regular,
-                  {
-                    color: COLORS.WHITE,
-                  },
-                ]}
-              >
-                {t("Login")}
-              </Text> */}
                 <FontAwesomeIcon
                   icon={faChevronRight}
                   size={20}
@@ -384,6 +302,7 @@ class Login extends React.PureComponent {
               height: 210,
               justifyContent: "flex-end",
               marginBottom: 30,
+              marginTop: 30,
             }}
           >
             <Box
@@ -393,95 +312,34 @@ class Login extends React.PureComponent {
                 justifyContent: "flex-end",
               }}
             >
-              <Text bold textAlign={"center"} fontSize={12}>
-                Doesn't Have an Account? Sign Up{" "}
-                <Text underline color={COLORS.THEME}>
-                  Here
-                </Text>
-              </Text>
-
-              <Box alignItems={"center"}>
-                <Text>or</Text>
-                <Text>Sign in with</Text>
-              </Box>
-
-              {/* <Box
-                style={{
-                  height: 40,
-                }}
-              >
-                <Grid>
-                  <Col
-                    style={{
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Box
-                      style={{
-                        borderTopColor: COLORS.BLACK,
-                        borderTopWidth: 1,
-                        width: "100%",
-                      }}
-                    ></Box>
-                  </Col>
-                  <Col
-                    style={{
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: 100,
-                    }}
-                  >
+              <Flex>
+                <Box mb={5}>
+                  <Text bold textAlign={"center"} fontSize={10}>
+                    Doesn't Have an Account? Sign Up{" "}
                     <Text
-                      style={[
-                        COMMON_STYLES[i18n.language].regular,
-                        {
-                          color: COLORS.THEME,
-                        },
-                      ]}
+                      onPress={this._onRegister}
+                      underline
+                      color={COLORS.THEME}
                     >
-                      {t("or")}
+                      Here
                     </Text>
-                  </Col>
-                  <Col
-                    style={{
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Box
-                      style={{
-                        borderTopColor: COLORS.BLACK,
-                        borderTopWidth: 1,
-                        width: "100%",
-                      }}
-                    ></Box>
-                  </Col>
-                </Grid>
-              </Box> */}
+                  </Text>
+                </Box>
+
+                <Box alignItems={"center"}>
+                  <Text fontSize={10}>or</Text>
+                  <Text fontSize={10}>Sign in with</Text>
+                </Box>
+              </Flex>
 
               <Box
                 style={{
                   height: 110,
                 }}
               >
-                {/* <Text
-                  style={[
-                    COMMON_STYLES[i18n.language].bold,
-                    {
-                      color: COLORS.BLACK,
-                      marginTop: 10,
-                      marginBottom: 20,
-                    },
-                  ]}
-                >
-                  {t("Login With")}
-                </Text> */}
-
                 <Grid
                   style={{
                     width: 140,
-                    // (Platform.OS == "ios" && majorVersionIOS >= 13 ? 150 : 0),
                     alignSelf: "center",
                   }}
                 >
@@ -543,61 +401,27 @@ class Login extends React.PureComponent {
                         alignItems: "center",
                       }}
                     >
-                      {/* <FontAwesomeIcon
-                        icon={faFacebook}
-                        size={30}
-                        style={{
-                          color: "#4C69BA",
-                        }}
-                      /> */}
                       <Square
                         backgroundColor={COLORS.WHITE}
                         style={{
-                          shadowColor: "black",
+                          shadowColor: "gray",
                           shadowOpacity: 1,
-                          shadowRadius: 2,
+                          shadowRadius: 1,
                           shadowOffset: { width: 0, height: 2 },
+                          elevation: 5,
                         }}
                         rounded={100}
                         size={30}
                       >
-                        <Image source={Gmail} resizeMode={"center"} />
+                        {/* <Image source={Gmail} resizeMode={"center"} /> */}
                       </Square>
                     </TouchableOpacity>
                   </Col>
-
-                  {/* {Platform.OS == "ios" && majorVersionIOS >= 13 && (
-                    <Col
-                      style={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: 30,
-                        width: 140,
-                      }}
-                    >
-                      <AppleButton
-                        buttonStyle={AppleButton.Style.BLACK}
-                        buttonType={AppleButton.Type.SIGN_IN}
-                        textStyle={[
-                          COMMON_STYLES[i18n.language].regular,
-                          {
-                            fontSize: 16,
-                          },
-                        ]}
-                        style={{
-                          width: "100%",
-                          height: 50,
-                          borderRadius: 20,
-                        }}
-                        onPress={this._onLoginWithApple}
-                      />
-                    </Col>
-                  )} */}
                 </Grid>
               </Box>
             </Box>
 
-            <TouchableOpacity onPress={this._onRegister}>
+            <TouchableOpacity>
               <Text
                 style={[
                   COMMON_STYLES[i18n.language].regular,
@@ -966,141 +790,164 @@ class Login extends React.PureComponent {
   };
 
   _onLogin = () => {
-    if (this.state.modalBlockingSpinner.visible == true) {
-      return false;
-    }
+    // if (this.state.modalBlockingSpinner.visible == true) {
+    //   return false;
+    // }
 
-    const { t, i18n } = this.props;
+    // const { t, i18n } = this.props;
 
-    if (!this.form.phone) {
-      this.modalAlert = {
-        visible: true,
-        title: t("Phone Required"),
-        description: t("Please provide mobile number"),
-      };
-      this.setState({
-        forceRender: !this.state.forceRender,
-      });
-      return false;
-    }
+    // if (!this.form.phone) {
+    //   this.modalAlert = {
+    //     visible: true,
+    //     title: t("Phone Required"),
+    //     description: t("Please provide mobile number"),
+    //   };
+    //   this.setState({
+    //     forceRender: !this.state.forceRender,
+    //   });
+    //   return false;
+    // }
 
-    if (
-      this.form.phone.startsWith("+") ||
-      this.form.phone.startsWith(
-        "+" + this.mobileCountryCodeRef.getCountryCode()
-      )
-    ) {
-      this.modalAlert = {
-        visible: true,
-        title: t("Invalid Mobile Number"),
-        description: t("Please provide valid mobile number"),
-      };
-      this.setState({
-        forceRender: !this.state.forceRender,
-      });
+    // // if (
+    // //   this.form.phone.startsWith("+") ||
+    // //   this.form.phone.startsWith(
+    // //     "+" + this.mobileCountryCodeRef.getCountryCode()
+    // //   )
+    // // ) {
+    // //   this.modalAlert = {
+    // //     visible: true,
+    // //     title: t("Invalid Mobile Number"),
+    // //     description: t("Please provide valid mobile number"),
+    // //   };
+    // //   this.setState({
+    // //     forceRender: !this.state.forceRender,
+    // //   });
 
-      return false;
-    }
+    // //   return false;
+    // // }
 
-    if (this.form.tnc == false) {
-      this.modalAlert = {
-        visible: true,
-        title: t("Terms & Conditions"),
-        description: t("Please accept out terms and conditions to use the app"),
-      };
-      this.setState({
-        forceRender: !this.state.forceRender,
-      });
-      return false;
-    }
+    // // if (this.form.tnc == false) {
+    // //   this.modalAlert = {
+    // //     visible: true,
+    // //     title: t("Terms & Conditions"),
+    // //     description: t("Please accept out terms and conditions to use the app"),
+    // //   };
+    // //   this.setState({
+    // //     forceRender: !this.state.forceRender,
+    // //   });
+    // //   return false;
+    // // }
 
-    const mobile_number =
-      "+" + this.mobileCountryCodeRef.getCountryCode() + this.form.phone;
-    const validatedPhoneNumber = parsePhoneNumberFromString(mobile_number);
+    // // const mobile_number =
+    // //   "+" + this.mobileCountryCodeRef.getCountryCode() + this.form.phone;
+    // // const validatedPhoneNumber = parsePhoneNumberFromString(mobile_number);
 
-    if (
-      !validatedPhoneNumber ||
-      !validatedPhoneNumber.country ||
-      !validatedPhoneNumber.isValid() ||
-      validatedPhoneNumber.country.toLowerCase() !=
-        this.mobileCountryCodeRef.getISOCode()
-    ) {
-      this.modalAlert = {
-        visible: true,
-        title: t("Invalid Mobile Number"),
-        description: t("Please provide valid mobile number"),
-      };
-      this.setState({
-        forceRender: !this.state.forceRender,
-      });
-      return false;
-    }
+    // // if (
+    // //   !validatedPhoneNumber ||
+    // //   !validatedPhoneNumber.country ||
+    // //   !validatedPhoneNumber.isValid() ||
+    // //   validatedPhoneNumber.country.toLowerCase() !=
+    // //     this.mobileCountryCodeRef.getISOCode()
+    // // ) {
+    // //   this.modalAlert = {
+    // //     visible: true,
+    // //     title: t("Invalid Mobile Number"),
+    // //     description: t("Please provide valid mobile number"),
+    // //   };
+    // //   this.setState({
+    // //     forceRender: !this.state.forceRender,
+    // //   });
+    // //   return false;
+    // // }
 
-    this.setState({
-      modalBlockingSpinner: {
-        visible: true,
-      },
-    });
+    // this.setState({
+    //   modalBlockingSpinner: {
+    //     visible: true,
+    //   },
+    // });
+
+    // const { screenComponentId } = this.props;
+
+    // let form = _.clone(this.form);
+    // // form.phone = validatedPhoneNumber.format("E.164");
+
+    // this.userModule
+    //   .loginWithOtp(form)
+    //   .then((response) => {
+    //     this.setState(
+    //       {
+    //         modalBlockingSpinner: {
+    //           visible: false,
+    //         },
+    //       },
+    //       () => {
+    //         Navigation.push(screenComponentId, {
+    //           component: {
+    //             name: "navigation.panntheefoundation.passwordScreen",
+    //             passProps: {
+    //               source: "login_with_otp",
+    //               registerForm: form,
+    //             },
+    //             options: {
+    //               animations: {
+    //                 push: {
+    //                   waitForRender: true,
+    //                 },
+    //               },
+    //               topBar: {
+    //                 height: 0,
+    //                 visible: false,
+    //               },
+    //             },
+    //           },
+    //         });
+    //       }
+    //     );
+    //   })
+    //   .catch((error) => {
+    //     this.setState(
+    //       {
+    //         modalBlockingSpinner: {
+    //           visible: false,
+    //         },
+    //       },
+    //       () => {
+    //         setTimeout(() => {
+    //           this.modalAlert = {
+    //             visible: true,
+    //             title: t("Login Failed"),
+    //             description: t("phone_number_is_wrong"),
+    //           };
+    //           this.setState({
+    //             forceRender: !this.state.forceRender,
+    //           });
+    //         }, 450);
+    //       }
+    //     );
+    //   });
 
     const { screenComponentId } = this.props;
 
-    let form = _.clone(this.form);
-    form.phone = validatedPhoneNumber.format("E.164");
-
-    this.userModule
-      .loginWithOtp(form)
-      .then((response) => {
-        this.setState(
-          {
-            modalBlockingSpinner: {
-              visible: false,
+    Navigation.push(screenComponentId, {
+      component: {
+        name: "navigation.panntheefoundation.passwordScreen",
+        // passProps: {
+        //   source: "login_with_otp",
+        //   registerForm: form,
+        // },
+        options: {
+          animations: {
+            push: {
+              waitForRender: true,
             },
           },
-          () => {
-            Navigation.push(screenComponentId, {
-              component: {
-                name: "navigation.panntheefoundation.VerifyOtpScreen",
-                passProps: {
-                  source: "login_with_otp",
-                  registerForm: form,
-                },
-                options: {
-                  animations: {
-                    push: {
-                      waitForRender: true,
-                    },
-                  },
-                  topBar: {
-                    height: 0,
-                    visible: false,
-                  },
-                },
-              },
-            });
-          }
-        );
-      })
-      .catch((error) => {
-        this.setState(
-          {
-            modalBlockingSpinner: {
-              visible: false,
-            },
+          topBar: {
+            height: 0,
+            visible: false,
           },
-          () => {
-            setTimeout(() => {
-              this.modalAlert = {
-                visible: true,
-                title: t("Login Failed"),
-                description: t("phone_number_is_wrong"),
-              };
-              this.setState({
-                forceRender: !this.state.forceRender,
-              });
-            }, 450);
-          }
-        );
-      });
+        },
+      },
+    });
   };
 
   _onForgotPassword = () => {
