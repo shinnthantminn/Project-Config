@@ -464,6 +464,7 @@ class HomeScreen extends React.Component {
               paddingRight: COMMON_STYLE.PADDING,
               height: 60,
               overflow: "hidden",
+              backgroundColor: COLORS.THEME,
               borderBottomWidth: 1,
               borderBottomColor: COLORS.THEME,
             }}
@@ -494,7 +495,7 @@ class HomeScreen extends React.Component {
                     icon={faBars}
                     size={30}
                     style={{
-                      color: COLORS.THEME,
+                      color: COLORS.WHITE,
                     }}
                   />
                 </TouchableOpacity>
@@ -519,31 +520,15 @@ class HomeScreen extends React.Component {
                       justifyContent: "center",
                     }}
                   >
-                    <Image
+                    {/* <Image
                       source={logo_image}
                       style={{
                         width: 40,
                         height: 45,
                       }}
-                    />
+                    /> */}
+                    <Text>Hello</Text>
                   </TouchableOpacity>
-
-                  {/*<TouchableOpacity onPress={this._onClickedHome}>
-                                            <Text style={[
-                                                COMMON_STYLES['en'].bold,
-                                                {
-                                                    color: COLORS.BLACK,
-                                                    fontSize: 16,
-                                                    lineHeight: 60,
-                                                    marginBottom: 0,
-                                                    paddingBottom: 0,
-                                                    textAlignVertical: 'center',
-                                                    height: 60,
-                                                    letterSpacing: 3
-                                                }
-                                            ]}>{ CommonConstants.app_name }</Text>
-                                        </TouchableOpacity>
-                                        */}
                 </Box>
               </Col>
               <Col style={{ width: 45 }}></Col>
